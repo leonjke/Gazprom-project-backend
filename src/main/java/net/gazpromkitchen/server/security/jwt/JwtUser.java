@@ -1,7 +1,6 @@
 package net.gazpromkitchen.server.security.jwt;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import net.gazpromkitchen.server.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

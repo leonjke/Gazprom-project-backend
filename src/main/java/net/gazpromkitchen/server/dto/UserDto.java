@@ -12,6 +12,7 @@ public class UserDto {
     private String firstName;
     private String lastName;
     private String email;
+    private Long points;
 
     public User toUser(){
         User user = new User();
@@ -20,6 +21,7 @@ public class UserDto {
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setEmail(email);
+        user.setPoints(points);
         return user;
     }
 
@@ -30,7 +32,7 @@ public class UserDto {
         userDto.setFirstName(user.getFirstName());
         userDto.setLastName(user.getLastName());
         userDto.setEmail(user.getEmail());
-
+        userDto.setPoints(user.getPoints());
         return userDto;
     }
 }

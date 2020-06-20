@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ser.Serializers;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -24,6 +25,10 @@ public class User extends BaseEntity {
 
     @Column(name = "password")
     private String password;
+
+    @Column(name = "points", insertable = false)
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    private Long points;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles",

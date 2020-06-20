@@ -26,7 +26,6 @@ public class UserServiceImpl implements UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-
     @Override
     public User register(User user) {
         Role roleUser = roleRepository.findByName("ROLE_USER");

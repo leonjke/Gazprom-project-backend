@@ -21,6 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
     private final JwtTokenProvider jwtTokenProvider;
 
     private static final String ADMIN_ENDPOINT = "/api/v1/admin/**";
+    private static final String AUTH_ENDPOINT = "/api/v1/auth/**";
     private static final String API_ENDPOINT = "/api/v1/**";
 
     @Autowired
@@ -42,6 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
+                .antMatchers(AUTH_ENDPOINT).permitAll()
                 .antMatchers(API_ENDPOINT).permitAll()
                 .antMatchers(ADMIN_ENDPOINT).hasRole("ADMIN")
                 .anyRequest().authenticated()

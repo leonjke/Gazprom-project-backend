@@ -63,18 +63,21 @@ public class AuthenticationRestControllerV1 {
         }
     }
 
+    @Operation(summary = "Registration in service")
     @PostMapping("registration")
-    public ResponseEntity register(@RequestBody RegistrationRequestDto requestDto){
+    public ResponseEntity register(@RequestBody RegistrationRequestDto requestDto) {
         Map<Object, Object> response = new HashMap<>();
-        if (userService.findByUsername(requestDto.getUsername()) != null){
+        if (userService.findByUsername(requestDto.getUsername()) != null) {
             response.put("status", "User with that username already exists.");
             return ResponseEntity.ok(response);
         }
         User user = requestDto.toUser();
-        userService.register(user);
+        user = userService.register(user);
 
+        String token = jwtTokenProvider.createToken(user.getUsername(), user.getRoles());
         response.put("username", user.getUsername());
-        response.put("status", "added");
+        response.put("status", "ok");
+        response.put("token", token);
 
         return ResponseEntity.ok(response);
     }
